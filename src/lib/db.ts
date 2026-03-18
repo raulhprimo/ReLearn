@@ -7,13 +7,15 @@ import * as schema from './schema'
 // At runtime, the correct driver (SQLite or PostgreSQL) is used.
 type DB = BetterSQLite3Database<typeof sqliteSchema>
 
+const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
+
 let _db: DB
 
-if (process.env.DATABASE_URL) {
+if (pgUrl) {
   // ── Produção: PostgreSQL (Supabase) ──────────────────────────────────────
   const postgres = require('postgres')
   const { drizzle } = require('drizzle-orm/postgres-js')
-  const client = postgres(process.env.DATABASE_URL, { prepare: false })
+  const client = postgres(pgUrl, { prepare: false })
   _db = drizzle(client, { schema }) as unknown as DB
 } else {
   // ── Local: SQLite ────────────────────────────────────────────────────────

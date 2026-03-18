@@ -1,14 +1,14 @@
 import type { Config } from 'drizzle-kit'
 
-const isPg = !!process.env.DATABASE_URL
+const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
 
-export default (isPg
+export default (pgUrl
   ? {
       schema: './src/lib/schema.pg.ts',
       out: './drizzle-pg',
       dialect: 'postgresql',
       dbCredentials: {
-        url: process.env.DATABASE_URL!,
+        url: pgUrl,
       },
     }
   : {

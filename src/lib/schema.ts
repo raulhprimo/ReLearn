@@ -2,8 +2,9 @@ import * as sqlite from './schema.sqlite'
 import * as pg from './schema.pg'
 
 // Use SQLite types as canonical (structurally identical to PG)
-// At runtime, the correct dialect tables are chosen via DATABASE_URL
-const s = (process.env.DATABASE_URL ? pg : sqlite) as unknown as typeof sqlite
+// At runtime, the correct dialect tables are chosen via POSTGRES_URL or DATABASE_URL
+const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
+const s = (pgUrl ? pg : sqlite) as unknown as typeof sqlite
 
 // ─── Tables (dialect chosen by DATABASE_URL) ─────────────────────────────────
 export const areas = s.areas
