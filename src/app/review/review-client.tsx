@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { AppleEmoji } from '@/components/apple-emoji'
 import { avaliarFlashcard } from '@/server/actions/flashcards'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -64,7 +65,7 @@ export function ReviewClient({ cards }: ReviewClientProps) {
   if (total === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] text-center space-y-4">
-        <p className="text-5xl">🎉</p>
+        <AppleEmoji name="party-popper" width={56} />
         <p className="text-white font-semibold text-xl">Tudo em dia!</p>
         <p className="text-zinc-400 text-sm">Nenhum flashcard para revisar agora.</p>
         <Link href="/sessao" className="text-indigo-400 hover:text-indigo-300 text-sm">
@@ -77,7 +78,7 @@ export function ReviewClient({ cards }: ReviewClientProps) {
   if (idx >= total) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] text-center space-y-4">
-        <p className="text-5xl">✅</p>
+        <AppleEmoji name="check-mark-button" width={56} />
         <p className="text-white font-semibold text-xl">Revisão concluída!</p>
         <p className="text-zinc-400 text-sm">{concluidos} cards revisados hoje.</p>
         <Link href="/" className="text-indigo-400 hover:text-indigo-300 text-sm">

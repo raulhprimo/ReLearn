@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { AppleEmoji } from '@/components/apple-emoji'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { PlayIcon, PauseIcon, RefreshIcon, Coffee01Icon } from '@hugeicons/core-free-icons'
 import { Button } from '@/components/ui/button'
@@ -132,7 +133,7 @@ export function PomodoroTimer({ onComplete }: PomodoroTimerProps) {
           <span className="text-sm text-zinc-500">Pronto para começar</span>
         )}
         {pomodoros > 0 && (
-          <span className="ml-auto text-xs text-zinc-500">{pomodoros} 🍅</span>
+          <span className="ml-auto flex items-center gap-1 text-xs text-zinc-500">{pomodoros} <AppleEmoji name="tomato" width={14} /></span>
         )}
       </div>
 

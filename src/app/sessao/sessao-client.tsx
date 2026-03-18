@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { AppleEmoji } from '@/components/apple-emoji'
 import { PomodoroTimer } from '@/components/pomodoro-timer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
@@ -99,7 +100,7 @@ export function SessaoClient({ areas }: SessaoClientProps) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center space-y-2">
-          <p className="text-4xl">✅</p>
+          <AppleEmoji name="check-mark-button" width={48} />
           <p className="text-white font-medium text-lg">Sessão salva!</p>
           <p className="text-zinc-400 text-sm">Redirecionando para o dashboard...</p>
         </div>

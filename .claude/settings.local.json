@@ -4,5 +4,8 @@
       "mcp__hugeicons__search_icons",
       "mcp__supabase__create_project"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "obsidian"
+  ]
 }

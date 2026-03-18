@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ActivityGraph } from '@/components/activity-graph'
 import { buscarDadosDashboard } from '@/server/actions/dashboard'
+import { AppleEmoji } from '@/components/apple-emoji'
+import { WelcomeHeader } from '@/components/welcome-header'
 import Link from 'next/link'
 
 const CITACOES = [
@@ -40,11 +42,8 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-        <p className="text-zinc-400 mt-1 text-sm italic">{getCitacaoDoDia()}</p>
-      </div>
+      {/* Boas-vindas */}
+      <WelcomeHeader quote={getCitacaoDoDia()} />
 
       {/* Cards de stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -86,7 +85,9 @@ export default async function DashboardPage() {
           <CardContent>
             <p className="text-4xl font-bold text-white">{dados.flashcardsHojeCount}</p>
             <p className="text-sm text-zinc-500 mt-1">
-              {dados.flashcardsHojeCount === 0 ? 'tudo em dia! 🎉' : 'flashcards pendentes'}
+              {dados.flashcardsHojeCount === 0 ? (
+                <span className="flex items-center gap-1">tudo em dia! <AppleEmoji name="party-popper" width={14} /></span>
+              ) : 'flashcards pendentes'}
             </p>
           </CardContent>
         </Card>

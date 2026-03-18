@@ -4,6 +4,7 @@ import './globals.css'
 import { NavSidebar } from '@/components/nav-sidebar'
 import { MobileHeader } from '@/components/mobile-header'
 import { MobileNav } from '@/components/mobile-nav'
+import { Providers } from '@/components/providers'
 
 const bricolage = Bricolage_Grotesque({
   variable: '--font-bricolage',
@@ -35,23 +36,25 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <body className={`${bricolage.variable} ${hostGrotesk.variable} ${geistMono.variable} font-sans antialiased min-h-screen`}>
-        {/* Desktop: sidebar lateral */}
-        <NavSidebar />
+        <Providers>
+          {/* Desktop: sidebar lateral */}
+          <NavSidebar />
 
-        {/* Mobile: header fixo no topo */}
-        <MobileHeader />
+          {/* Mobile: header fixo no topo */}
+          <MobileHeader />
 
-        {/* Conteúdo principal */}
-        <main className="
-          min-h-screen
-          md:ml-56 md:p-8
-          pt-16 pb-28 px-4
-        ">
-          {children}
-        </main>
+          {/* Conteúdo principal */}
+          <main className="
+            min-h-screen
+            md:ml-56 md:p-8
+            pt-16 pb-28 px-4
+          ">
+            {children}
+          </main>
 
-        {/* Mobile: nav fixo no rodapé */}
-        <MobileNav />
+          {/* Mobile: nav fixo no rodapé */}
+          <MobileNav />
+        </Providers>
       </body>
     </html>
   )
