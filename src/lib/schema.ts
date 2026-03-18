@@ -1,27 +1,32 @@
-import * as sqlite from './schema.sqlite'
-import * as pg from './schema.pg'
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 
-// Use SQLite types as canonical (structurally identical to PG)
-// At runtime, the correct dialect tables are chosen via POSTGRES_URL or DATABASE_URL
-const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
-const s = (pgUrl ? pg : sqlite) as unknown as typeof sqlite
+// Schema is resolved lazily to ensure env vars are available.
+// The Proxy delegates all property access to the correct dialect schema.
+function getSchema() {
+  const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
+  return pgUrl ? require('./schema.pg') : require('./schema.sqlite')
+}
 
-// ─── Tables (dialect chosen by DATABASE_URL) ─────────────────────────────────
-export const areas = s.areas
-export const topicos = s.topicos
-export const sessoes = s.sessoes
-export const flashcards = s.flashcards
-export const flashcardReviews = s.flashcardReviews
-export const diagnostico = s.diagnostico
-export const config = s.config
+const schemaProxy = new Proxy({} as any, {
+  get(_, prop) {
+    return getSchema()[prop]
+  },
+})
 
-// ─── Relations ───────────────────────────────────────────────────────────────
-export const areasRelations = s.areasRelations
-export const topicosRelations = s.topicosRelations
-export const sessoesRelations = s.sessoesRelations
-export const flashcardsRelations = s.flashcardsRelations
-export const flashcardReviewsRelations = s.flashcardReviewsRelations
-export const diagnosticoRelations = s.diagnosticoRelations
+export const areas = schemaProxy.areas
+export const topicos = schemaProxy.topicos
+export const sessoes = schemaProxy.sessoes
+export const flashcards = schemaProxy.flashcards
+export const flashcardReviews = schemaProxy.flashcardReviews
+export const diagnostico = schemaProxy.diagnostico
+export const config = schemaProxy.config
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+export const areasRelations = schemaProxy.areasRelations
+export const topicosRelations = schemaProxy.topicosRelations
+export const sessoesRelations = schemaProxy.sessoesRelations
+export const flashcardsRelations = schemaProxy.flashcardsRelations
+export const flashcardReviewsRelations = schemaProxy.flashcardReviewsRelations
+export const diagnosticoRelations = schemaProxy.diagnosticoRelations
+
+// Types (structurally identical between dialects)
 export type { Area, Topico, Sessao, Flashcard, FlashcardReview, DiagnosticoResposta } from './schema.sqlite'

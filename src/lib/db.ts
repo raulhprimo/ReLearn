@@ -4,12 +4,13 @@ import type * as sqliteSchema from './schema.sqlite'
 
 type DB = BetterSQLite3Database<typeof sqliteSchema>
 
-const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
-
 let _db: DB | null = null
 
 function getDb(): DB {
   if (_db) return _db
+
+  // Read env at call time, not module load time
+  const pgUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL
 
   if (pgUrl) {
     const postgres = require('postgres')
@@ -31,8 +32,6 @@ function getDb(): DB {
   return _db
 }
 
-// Proxy delays initialization until first property access at runtime.
-// This prevents better-sqlite3 from being evaluated at module load time on Vercel.
 export const db: DB = new Proxy({} as DB, {
   get(_, prop) {
     return (getDb() as any)[prop]
