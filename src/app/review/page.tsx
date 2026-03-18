@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { buscarFlashcardsParaRevisar } from '@/server/actions/flashcards'
 import { ReviewClient } from './review-client'
 import Link from 'next/link'

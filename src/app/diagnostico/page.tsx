@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { buscarDiagnostico, buscarMediasPorArea } from '@/server/actions/diagnostico'
 import { buscarAreasComTopicos } from '@/server/actions/dashboard'
 import { DiagnosticoClient } from './diagnostico-client'

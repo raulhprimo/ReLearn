@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { buscarAreasComProgresso } from '@/server/actions/trilhas'
 import { TrilhasClient } from './trilhas-client'
 import { HugeiconsIcon } from '@hugeicons/react'

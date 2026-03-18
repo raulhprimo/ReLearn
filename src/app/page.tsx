@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { HugeiconsIcon } from '@hugeicons/react'
 import { FireIcon, Clock01Icon, BrainIcon, BookOpen02Icon, ZapIcon, Target02Icon } from '@hugeicons/core-free-icons'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'

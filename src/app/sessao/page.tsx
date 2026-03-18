@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { buscarAreasComTopicos } from '@/server/actions/dashboard'
 import { SessaoClient } from './sessao-client'
 
