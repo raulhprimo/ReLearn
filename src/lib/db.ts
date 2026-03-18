@@ -18,7 +18,18 @@ function getDb(): DB {
   const { drizzle } = require('drizzle-orm/postgres-js')
   const schema = require('./schema.pg')
 
-  const client = (postgres as any)(connectionString, { prepare: false })
+  // Parse the URL manually to avoid postgres.js URL parsing issues
+  // with dots in username (postgres.PROJECT_REF) and special chars in password
+  const url = new URL(connectionString)
+  const client = (postgres as any)({
+    host: url.hostname,
+    port: parseInt(url.port) || 6543,
+    database: url.pathname.slice(1) || 'postgres',
+    username: decodeURIComponent(url.username),
+    password: decodeURIComponent(url.password),
+    prepare: false, // Required for Supabase Transaction Pooler
+  })
+
   _db = drizzle(client, { schema }) as DB
   return _db
 }
