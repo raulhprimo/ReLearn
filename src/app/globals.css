@@ -4,116 +4,211 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Tema Ultra-Aprendizado ─────────────────────────────────────────────────
+   Dark:  cinza escuro suave + lima elétrico
+   Light: creme quente (fundo leitura) + lima elétrico
+   ─────────────────────────────────────────────────────────────────────────── */
+
 @theme inline {
+  /* Fontes */
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-secondary: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+
+  /* Tokens semânticos → variáveis CSS */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Zinc → variáveis de tema (responsivas a :root / .dark) */
+  --color-zinc-50:  var(--zinc-50);
+  --color-zinc-100: var(--zinc-100);
+  --color-zinc-200: var(--zinc-200);
+  --color-zinc-300: var(--zinc-300);
+  --color-zinc-400: var(--zinc-400);
+  --color-zinc-500: var(--zinc-500);
+  --color-zinc-600: var(--zinc-600);
+  --color-zinc-700: var(--zinc-700);
+  --color-zinc-800: var(--zinc-800);
+  --color-zinc-900: var(--zinc-900);
+  --color-zinc-950: var(--zinc-950);
+
+  /* Indigo → Lima elétrico */
+  --color-indigo-50:  oklch(0.97 0.05  127);
+  --color-indigo-100: oklch(0.95 0.08  127);
+  --color-indigo-200: oklch(0.92 0.12  127);
+  --color-indigo-300: oklch(0.90 0.17  127);
+  --color-indigo-400: oklch(0.87 0.22  127);
+  --color-indigo-500: oklch(0.86 0.24  127);
+  --color-indigo-600: oklch(0.84 0.25  127);
+  --color-indigo-700: oklch(0.65 0.20  127);
+  --color-indigo-800: oklch(0.45 0.15  127);
+  --color-indigo-900: oklch(0.32 0.11  127); /* mais visível no dark (graph) */
+  --color-indigo-950: oklch(0.18 0.07  127);
+
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ─── LIGHT MODE — Creme quente ─────────────────────────────────────────── */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /*
+   * Zinc no light: zinc-700/800/900/950 são INVERTIDOS para tons claros,
+   * pois os componentes foram projetados para dark (bg-zinc-900 = card bg).
+   * Assim bg-zinc-900 vira creme, não preto.
+   */
+  --zinc-50:  oklch(0.985 0.010 88);
+  --zinc-100: oklch(0.970 0.016 88);
+  --zinc-200: oklch(0.930 0.018 88);
+  --zinc-300: oklch(0.870 0.018 88);
+  --zinc-400: oklch(0.580 0.016 88); /* texto muted legível no creme */
+  --zinc-500: oklch(0.460 0.014 88);
+  --zinc-600: oklch(0.360 0.012 88);
+  --zinc-700: oklch(0.830 0.014 88); /* bordas visíveis */
+  --zinc-800: oklch(0.888 0.016 88); /* inputs / quadrados vazios do gráfico */
+  --zinc-900: oklch(0.938 0.018 90); /* bg de cards */
+  --zinc-950: oklch(0.956 0.020 90); /* bg mais sutil */
+
+  /* Fundo creme */
+  --background:       oklch(0.968 0.024 90);
+  --foreground:       oklch(0.120 0.006 88);
+
+  --card:             oklch(0.978 0.018 90);
+  --card-foreground:  oklch(0.120 0.006 88);
+
+  --popover:          oklch(0.978 0.018 90);
+  --popover-foreground: oklch(0.120 0.006 88);
+
+  /* Lima elétrico (mais escuro para contraste no creme) */
+  --primary:          oklch(0.72 0.22 127);
+  --primary-foreground: oklch(0.97 0 0);
+
+  --secondary:        oklch(0.935 0.020 88);
+  --secondary-foreground: oklch(0.200 0.008 88);
+
+  --muted:            oklch(0.940 0.018 90);
+  --muted-foreground: oklch(0.460 0.014 88);
+
+  --accent:           oklch(0.940 0.020 90);
+  --accent-foreground: oklch(0.200 0.008 88);
+
+  --destructive:      oklch(0.577 0.245 27);
+  --border:           oklch(0.875 0.017 88);
+  --input:            oklch(0.888 0.016 88);
+  --ring:             oklch(0.72 0.22 127);
+
+  /* Charts */
+  --chart-1: oklch(0.84 0.25 127);
+  --chart-2: oklch(0.70 0.20 127);
+  --chart-3: oklch(0.55 0.17 127);
+  --chart-4: oklch(0.40 0.13 127);
+  --chart-5: oklch(0.25 0.09 127);
+
+  /* Sidebar — clara no light mode */
+  --sidebar:                    oklch(0.950 0.020 88);
+  --sidebar-foreground:         oklch(0.180 0.007 88);
+  --sidebar-primary:            oklch(0.72 0.22 127);
+  --sidebar-primary-foreground: oklch(0.97 0 0);
+  --sidebar-accent:             oklch(0.905 0.017 88);
+  --sidebar-accent-foreground:  oklch(0.180 0.007 88);
+  --sidebar-border:             oklch(0.858 0.015 88);
+  --sidebar-ring:               oklch(0.72 0.22 127);
 }
 
+/* ─── DARK MODE — Cinza escuro suave ────────────────────────────────────── */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Zinc: preto suave (não 000) */
+  --zinc-50:  oklch(0.970 0 0);
+  --zinc-100: oklch(0.920 0 0);
+  --zinc-200: oklch(0.820 0 0);
+  --zinc-300: oklch(0.700 0 0);
+  --zinc-400: oklch(0.560 0 0);
+  --zinc-500: oklch(0.430 0 0);
+  --zinc-600: oklch(0.330 0 0);
+  --zinc-700: oklch(0.250 0 0);
+  --zinc-800: oklch(0.210 0 0); /* levantado: quadrados do gráfico mais visíveis */
+  --zinc-900: oklch(0.145 0 0); /* levantado: card bg menos preto */
+  --zinc-950: oklch(0.090 0 0);
+
+  /* Fundo suavemente preto */
+  --background:       oklch(0.105 0 0); /* era 0.07, agora menos denso */
+  --foreground:       oklch(0.97 0 0);
+
+  --card:             oklch(0.135 0 0); /* era 0.10 */
+  --card-foreground:  oklch(0.97 0 0);
+
+  --popover:          oklch(0.135 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+
+  /* Lima elétrico vibrante */
+  --primary:          oklch(0.88 0.25 127);
+  --primary-foreground: oklch(0.07 0 0);
+
+  --secondary:        oklch(0.180 0 0); /* era 0.15 */
+  --secondary-foreground: oklch(0.97 0 0);
+
+  --muted:            oklch(0.180 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+
+  --accent:           oklch(0.180 0 0);
+  --accent-foreground: oklch(0.97 0 0);
+
+  --destructive:      oklch(0.70 0.19 22);
+  --border:           oklch(1 0 0 / 9%);
+  --input:            oklch(1 0 0 / 11%);
+  --ring:             oklch(0.88 0.25 127);
+
+  /* Charts */
+  --chart-1: oklch(0.88 0.25 127);
+  --chart-2: oklch(0.75 0.21 127);
+  --chart-3: oklch(0.60 0.17 127);
+  --chart-4: oklch(0.45 0.13 127);
+  --chart-5: oklch(0.30 0.09 127);
+
+  /* Sidebar — escura no dark */
+  --sidebar:                    oklch(0.080 0 0); /* era 0.055 */
+  --sidebar-foreground:         oklch(0.95 0 0);
+  --sidebar-primary:            oklch(0.88 0.25 127);
+  --sidebar-primary-foreground: oklch(0.07 0 0);
+  --sidebar-accent:             oklch(0.145 0 0); /* era 0.12 */
+  --sidebar-accent-foreground:  oklch(0.95 0 0);
+  --sidebar-border:             oklch(1 0 0 / 8%);
+  --sidebar-ring:               oklch(0.88 0.25 127);
 }
 
 @layer base {
@@ -125,5 +220,14 @@
   }
   html {
     @apply font-sans;
+  }
+
+  /*
+   * No light mode, text-white é ilegível sobre fundo creme.
+   * Substituímos pelo foreground (quase-preto quente) em toda a app,
+   * exceto quando há um fundo escuro explícito via classe bg-* de cor saturada.
+   */
+  html:not(.dark) .text-white {
+    color: var(--foreground) !important;
   }
 }
